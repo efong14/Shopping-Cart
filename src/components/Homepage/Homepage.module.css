@@ -1,0 +1,12 @@
+li {
+  display: flex;
+  align-items: center;
+}
+
+img {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+  object-position: right bottom;
+  border-radius: 50%;
+}
