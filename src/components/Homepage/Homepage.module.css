@@ -1,12 +1,64 @@
+@font-face {
+  font-family: Goose;
+  src: url(../../fonts/goose.ttf);
+}
+
+@font-face {
+  font-family: gLight;
+  src: url(../../fonts/gLight.ttf);
+}
+
+@font-face {
+  font-family: gSmall;
+  src: url(../../fonts/gSmall.ttf);
+}
+
+body {
+  background-color: #3d8d7a;
+  color: #fbffe4;
+}
+
+.pageContainer {
+  margin-left: 20px;
+  display: flex;
+  /* align-items: start; */
+  flex-direction: column;
+}
+
+h1 {
+  font-family: Goose;
+  font-size: 100px;
+  margin-bottom: 0px;
+}
+
+h2 {
+  font-family: gLight;
+  font-size: 20px;
+  margin-top: 0px;
+}
+
+ul {
+  margin-top: 50px;
+  display: flex;
+  padding-left: 0px;
+  justify-content: space-between;
+}
+
 li {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  width: fit-content;
+  font-size: 20px;
+  font-family: gSmall;
+  margin-right: 20px;
 }
 
 img {
-  height: 100px;
-  width: 100px;
+  height: 250px;
+  width: 250px;
   object-fit: cover;
-  object-position: right bottom;
+  object-position: left bottom;
   border-radius: 50%;
+  margin-bottom: 20px;
 }

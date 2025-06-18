@@ -5,9 +5,11 @@ import homepageItems from '../Database';
 function Homepage() {
   return (
     <>
-      <h1>The Store</h1>
-      <h2>The one stop shop for all your needs</h2>
-      <div className="listContainer">
+      <div className={styles.pageContainer}>
+        <div>
+          <h1>THE STORE</h1>
+          <h2>The one stop shop for all your needs</h2>
+        </div>
         <ul>
           {homepageItems.map((item) => (
             <li key={item.id}>
