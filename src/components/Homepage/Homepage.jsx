@@ -7,7 +7,7 @@ function Homepage() {
     <>
       <div className={styles.pageContainer}>
         <div>
-          <h1>THE STORE</h1>
+          <h1 className={styles.store}>THE STORE</h1>
           <h2>The one stop shop for all your needs</h2>
         </div>
         <ul>

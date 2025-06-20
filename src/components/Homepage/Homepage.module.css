@@ -21,11 +21,10 @@ body {
 .pageContainer {
   margin-left: 20px;
   display: flex;
-  /* align-items: start; */
   flex-direction: column;
 }
 
-h1 {
+.store {
   font-family: Goose;
   font-size: 100px;
   margin-bottom: 0px;
