@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './Homepage.module.css';
-import homepageItems from '../Database';
+import { homepageItems } from '../Database';
 
 function Homepage() {
   return (
@@ -8,12 +8,12 @@ function Homepage() {
       <div className={styles.pageContainer}>
         <div>
           <h1 className={styles.store}>THE STORE</h1>
-          <h2>The one stop shop for all your needs</h2>
+          <h2 className={styles.h2}>The one stop shop for all your needs</h2>
         </div>
-        <ul>
+        <ul className={styles.ul}>
           {homepageItems.map((item) => (
-            <li key={item.id}>
-              <img src={item.img} alt="" />
+            <li className={styles.li} key={item.id}>
+              <img className={styles.img} src={item.img} alt="" />
               {item.category}
             </li>
           ))}

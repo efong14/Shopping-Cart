@@ -1,0 +1,21 @@
+/*subtract
+productNum add*/
+.productCard {
+  border: 1px solid white;
+}
+
+.productName {
+  border: 1px solid red;
+}
+
+.productImg {
+  border: 1px solid blue;
+}
+
+.productPrice {
+  border: 1px solid purple;
+}
+
+.productBtnContainer {
+  border: 1px solid yellow;
+}

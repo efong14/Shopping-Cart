@@ -14,4 +14,6 @@ const homepageItems = [
   { id: 5, category: 'Raw Meats', img: meat },
 ];
 
-export default homepageItems;
+const tester = [{ id: 'Name', name: 'Name', img: 'Image', price: '20$' }];
+
+export { homepageItems, tester };
