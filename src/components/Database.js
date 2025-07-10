@@ -5,7 +5,7 @@ import can from '../img/can.jpg';
 import fresh from '../img/fresh.jpg';
 import meat from '../img/meat.jpg';
 
-const homepageItems = [
+export default homepageItems = [
   { id: 0, category: 'Cleaning', img: clean },
   { id: 1, category: 'Gardening', img: garden },
   { id: 2, category: 'Home Improvement', img: tools },
@@ -13,7 +13,3 @@ const homepageItems = [
   { id: 4, category: 'Fresh Produce', img: fresh },
   { id: 5, category: 'Raw Meats', img: meat },
 ];
-
-const tester = [{ id: 'Name', name: 'Name', img: 'Image', price: '20$' }];
-
-export { homepageItems, tester };

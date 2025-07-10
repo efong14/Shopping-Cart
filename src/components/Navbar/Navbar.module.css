@@ -4,9 +4,12 @@
 }
 
 .navBar {
-  height: 40px;
+  height: 65px;
   width: 100vw;
   background-color: #b3d8a8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .navButton {

@@ -25,6 +25,12 @@ body {
   flex-direction: column;
 }
 
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .store {
   font-family: Goose;
   font-size: 100px;

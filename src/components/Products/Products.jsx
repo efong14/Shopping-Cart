@@ -1,25 +1,42 @@
 import styles from './Products.module.css';
-import { tester } from '../Database';
+import { useEffect, useState } from 'react';
 
 export default function Products() {
+  const [productList, setProductList] = useState(null);
+  useEffect(() => {
+    fetch('https://fakestoreapi.com/products')
+      .then((response) => response.json())
+      .then((products) => setProductList(products));
+  }, []);
   return (
-    <>
-      <ul>
-        {tester.map((item) => {
-          return (
-            <div className={styles.productCard} key={item.id}>
-              <div className={styles.productName}> {item.name} </div>
-              <img className={styles.productImg} src="" alt={item.img} />
-              <div className={styles.productPrice}> {item.price} </div>
-              <div className={styles.productBtnContainer}>
-                <button className={styles.subtract}>-</button>
-                <div className={styles.productNum}>1</div>
-                <button className={styles.add}>+</button>
-              </div>
-            </div>
-          );
-        })}
-      </ul>
-    </>
+    productList && (
+      <>
+        <div className={styles.productWrapper}>
+          <ul className={styles.productList}>
+            {productList.map((item) => {
+              return (
+                <div className={styles.productCard} key={item.id}>
+                  <img className={styles.productImg} src={item.image} alt={item.title} />
+                  <div className={styles.infoBox}>
+                    <div className={styles.textBox}>
+                      <div className={styles.productName}> {item.title} </div>
+                      <div className={styles.productPrice}> ${item.price} </div>
+                    </div>
+                    <div className={styles.productBtnContainer}>
+                      <div className={styles.amountContainer}>
+                        <button className={styles.subtract}>-</button>
+                        <div className={styles.productNum}>0</div>
+                        <button className={styles.add}>+</button>
+                      </div>
+                      <button className={styles.addCart}>ADD TO CART</button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </ul>
+        </div>
+      </>
+    )
   );
 }
