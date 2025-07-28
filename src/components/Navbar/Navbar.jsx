@@ -6,13 +6,15 @@ export default function Navbar() {
   return (
     <>
       <div className={styles.navBar}>
-        <Link to="/" className={styles.navButton}>
-          Home
-        </Link>
-        <Link to="/nav/products" className={styles.navButton}>
-          Products
-        </Link>
-        <Link to="/nav/checkout" className={styles.navButton}>
+        <div className={styles.leftSide}>
+          <Link to="/" className={styles.home}>
+            Home
+          </Link>
+          <Link to="/nav/products" className={styles.products}>
+            Products
+          </Link>
+        </div>
+        <Link to="/nav/checkout" className={styles.checkout}>
           Checkout
         </Link>
       </div>

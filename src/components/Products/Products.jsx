@@ -1,12 +1,16 @@
 import styles from './Products.module.css';
 import { useEffect, useState } from 'react';
 
-export default function Products() {
-  const [productList, setProductList] = useState(null);
+const fetcher = (setter) => {
+  fetch('https://fakestoreapi.com/products')
+    .then((response) => response.json())
+    .then((products) => setter(products));
+};
+
+function Products({ dState, fetchs }) {
+  const [productList, setProductList] = useState(dState);
   useEffect(() => {
-    fetch('https://fakestoreapi.com/products')
-      .then((response) => response.json())
-      .then((products) => setProductList(products));
+    fetchs(setProductList);
   }, []);
   return (
     productList && (
@@ -40,3 +44,5 @@ export default function Products() {
     )
   );
 }
+
+export { Products, fetcher };

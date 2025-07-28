@@ -1,7 +1,7 @@
 import Navbar from './components/Navbar/Navbar';
 import Homepage from './components/Homepage/Homepage';
 import Errorpage from './components/Errorpage/Errorpage';
-import Products from './components/Products/Products';
+import { Products, fetcher } from './components/Products/Products';
 import Checkout from './components/Checkout/Checkout';
 
 const routes = [
@@ -15,7 +15,7 @@ const routes = [
     path: 'nav',
     element: <Navbar />,
     children: [
-      { path: 'products', element: <Products /> },
+      { path: 'products', element: <Products fetchs={fetcher} /> },
       { path: 'checkout', element: <Checkout /> },
     ],
   },

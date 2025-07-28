@@ -6,6 +6,10 @@ productNum add*/
   src: url(../../fonts/gLight.ttf);
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .productWrapper {
   margin: 50px;
 }
@@ -66,13 +70,36 @@ productNum add*/
   display: flex;
 }
 
+.amountContainer {
+  height: 50px;
+  display: flex;
+}
+
+.productNum,
+.add,
+.subtract {
+  width: 50px;
+}
+
+.productNum,
+.add,
+.subtract,
 .addCart {
   background-color: white;
   color: #3d8d7a;
   border: 2px solid #3d8d7a;
   border-radius: 10px;
+  height: 50px;
 }
 
+.productNum {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add:hover,
+.subtract:hover,
 .addCart:hover {
   background-color: #3d8d7a;
   color: white;

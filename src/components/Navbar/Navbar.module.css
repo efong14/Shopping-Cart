@@ -5,22 +5,33 @@
 
 .navBar {
   height: 65px;
-  width: 100vw;
+  width: 100%;
   background-color: #b3d8a8;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
-.navButton {
+.leftSide {
+  margin-left: 50px;
+}
+
+.home,
+.products,
+.checkout {
   font-family: Goose;
   color: #fbffe4;
   font-size: 30px;
-  margin-right: 10px;
-  margin-left: 10px;
+  margin-right: 20px;
 }
 
-.navButton:hover {
+.checkout {
+  margin-right: 65px;
+}
+
+.home:hover,
+.products:hover,
+.checkout:hover {
   color: #3d8d7a;
   text-decoration: underline;
 }
