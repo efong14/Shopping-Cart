@@ -12,36 +12,37 @@ function Products({ dState, fetchs }) {
   useEffect(() => {
     fetchs(setProductList);
   }, []);
+  if (!productList) {
+    return <p> Loading!</p>;
+  }
   return (
-    productList && (
-      <>
-        <div className={styles.productWrapper}>
-          <ul className={styles.productList}>
-            {productList.map((item) => {
-              return (
-                <div className={styles.productCard} key={item.id}>
-                  <img className={styles.productImg} src={item.image} alt={item.title} />
-                  <div className={styles.infoBox}>
-                    <div className={styles.textBox}>
-                      <div className={styles.productName}> {item.title} </div>
-                      <div className={styles.productPrice}> ${item.price} </div>
+    <>
+      <div className={styles.productWrapper}>
+        <ul className={styles.productList}>
+          {productList.map((item) => {
+            return (
+              <div className={styles.productCard} key={item.id}>
+                <img className={styles.productImg} src={item.image} alt={item.title} />
+                <div className={styles.infoBox}>
+                  <div className={styles.textBox}>
+                    <div className={styles.productName}> {item.title} </div>
+                    <div className={styles.productPrice}> ${item.price} </div>
+                  </div>
+                  <div className={styles.productBtnContainer}>
+                    <div className={styles.amountContainer}>
+                      <button className={styles.subtract}>-</button>
+                      <div className={styles.productNum}>0</div>
+                      <button className={styles.add}>+</button>
                     </div>
-                    <div className={styles.productBtnContainer}>
-                      <div className={styles.amountContainer}>
-                        <button className={styles.subtract}>-</button>
-                        <div className={styles.productNum}>0</div>
-                        <button className={styles.add}>+</button>
-                      </div>
-                      <button className={styles.addCart}>ADD TO CART</button>
-                    </div>
+                    <button className={styles.addCart}>ADD TO CART</button>
                   </div>
                 </div>
-              );
-            })}
-          </ul>
-        </div>
-      </>
-    )
+              </div>
+            );
+          })}
+        </ul>
+      </div>
+    </>
   );
 }
 
