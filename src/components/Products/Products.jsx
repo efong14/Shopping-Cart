@@ -1,5 +1,6 @@
 import styles from './Products.module.css';
 import { useEffect, useState } from 'react';
+// Try moving the buttons into another component in this file only, so that state is individual per card OR make a factory funtion?
 
 const fetcher = (setter) => {
   fetch('https://fakestoreapi.com/products')
@@ -7,11 +8,21 @@ const fetcher = (setter) => {
     .then((products) => setter(products));
 };
 
-function Products({ dState, fetchs }) {
-  const [productList, setProductList] = useState(dState);
+function Products({ fetchs }) {
+  const [productList, setProductList] = useState(null);
+  const [productAmount, setProductAmount] = useState(0);
+
+  const addClick = () => {
+    setProductAmount(productAmount + 1);
+  };
+  const subtractClick = () => {
+    setProductAmount(productAmount - 1);
+  };
+
   useEffect(() => {
     fetchs(setProductList);
   }, []);
+
   if (!productList) {
     return <p> Loading!</p>;
   }
@@ -30,9 +41,15 @@ function Products({ dState, fetchs }) {
                   </div>
                   <div className={styles.productBtnContainer}>
                     <div className={styles.amountContainer}>
-                      <button className={styles.subtract}>-</button>
-                      <div className={styles.productNum}>0</div>
-                      <button className={styles.add}>+</button>
+                      <button className={styles.subtract} onClick={subtractClick}>
+                        -
+                      </button>
+                      <div className={styles.productNum} role="amount">
+                        {productAmount}
+                      </div>
+                      <button className={styles.add} onClick={addClick}>
+                        +
+                      </button>
                     </div>
                     <button className={styles.addCart}>ADD TO CART</button>
                   </div>
