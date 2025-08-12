@@ -1,6 +1,6 @@
 import styles from './Products.module.css';
 import { useEffect, useState } from 'react';
-// Try moving the buttons into another component in this file only, so that state is individual per card OR make a factory funtion?
+// Stick buttons to bottom of card?
 
 const fetcher = (setter) => {
   fetch('https://fakestoreapi.com/products')
@@ -8,10 +8,39 @@ const fetcher = (setter) => {
     .then((products) => setter(products));
 };
 
-function Products({ fetchs }) {
-  const [productList, setProductList] = useState(null);
+function Buttons() {
   const [productAmount, setProductAmount] = useState(0);
 
+  const addClick = () => {
+    setProductAmount(productAmount + 1);
+  };
+  const subtractClick = () => {
+    if (productAmount === 0) return;
+    setProductAmount(productAmount - 1);
+  };
+
+  return (
+    <>
+      <div className={styles.amountContainer}>
+        <button className={styles.subtract} onClick={subtractClick}>
+          -
+        </button>
+        <div className={styles.productNum} role="amount">
+          {productAmount}
+        </div>
+        <button className={styles.add} onClick={addClick}>
+          +
+        </button>
+      </div>
+      <button className={styles.addCart}>ADD TO CART</button>
+    </>
+  );
+}
+
+function Products({ fetchs }) {
+  const [productList, setProductList] = useState(null);
+
+  const [productAmount, setProductAmount] = useState(0);
   const addClick = () => {
     setProductAmount(productAmount + 1);
   };
@@ -40,18 +69,7 @@ function Products({ fetchs }) {
                     <div className={styles.productPrice}> ${item.price} </div>
                   </div>
                   <div className={styles.productBtnContainer}>
-                    <div className={styles.amountContainer}>
-                      <button className={styles.subtract} onClick={subtractClick}>
-                        -
-                      </button>
-                      <div className={styles.productNum} role="amount">
-                        {productAmount}
-                      </div>
-                      <button className={styles.add} onClick={addClick}>
-                        +
-                      </button>
-                    </div>
-                    <button className={styles.addCart}>ADD TO CART</button>
+                    <Buttons />
                   </div>
                 </div>
               </div>
