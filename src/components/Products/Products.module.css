@@ -1,5 +1,4 @@
-/*subtract
-productNum add*/
+/* fix spacing in cards */
 
 @font-face {
   font-family: gLight;
@@ -25,7 +24,7 @@ productNum add*/
 .productCard {
   border-radius: 15px;
   width: 400px;
-  height: 500px;
+  height: 700px;
   background-color: white;
   color: black;
   box-shadow: 5px 5px 5px #333;
@@ -42,6 +41,7 @@ productNum add*/
 
 .infoBox {
   display: flex;
+  justify-content: space-around;
   flex-direction: column;
   font-family: sans-serif;
   height: 40%;
@@ -49,20 +49,29 @@ productNum add*/
 }
 
 .textBox {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
   margin-top: 10px;
 }
 
 .productName {
-  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+.productCategory {
+  width: fit-content;
+  padding: 8px;
+  margin-top: 15px;
+  font-size: 15px;
+  color: white;
+  background-color: #3d8d7a;
+  border-radius: 50px;
 }
 
 .productPrice {
   margin-bottom: 10px;
   margin-left: 10px;
-  font-size: 20px;
+  margin-bottom: 20px;
+  font-size: 30px;
   color: #3d8d7a;
 }
 
@@ -73,23 +82,42 @@ productNum add*/
 .amountContainer {
   height: 50px;
   display: flex;
+  margin-right: 20px;
+  border: 2px solid #3d8d7a;
+  border-radius: 6px;
 }
 
 .productNum,
 .add,
 .subtract {
-  width: 50px;
+  width: 60px;
+  height: 100%;
+  color: #3d8d7a;
 }
 
-.productNum,
-.add,
-.subtract,
+.productNum {
+  border-left: 1px solid #3d8d7a;
+  border-right: 1px solid #3d8d7a;
+}
+
+.subtract {
+  border: none;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.add {
+  border: none;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
 .addCart {
-  background-color: white;
-  color: #3d8d7a;
+  width: 200px;
+  background-color: #3d8d7a;
+  color: white;
   border: 2px solid #3d8d7a;
   border-radius: 10px;
-  height: 50px;
 }
 
 .productNum {
@@ -101,6 +129,5 @@ productNum add*/
 .add:hover,
 .subtract:hover,
 .addCart:hover {
-  background-color: #3d8d7a;
-  color: white;
+  filter: brightness(90%);
 }

@@ -39,14 +39,18 @@ function Buttons() {
 
 function Products({ fetchs }) {
   const [productList, setProductList] = useState(null);
-
   const [productAmount, setProductAmount] = useState(0);
+
   const addClick = () => {
     setProductAmount(productAmount + 1);
   };
   const subtractClick = () => {
     setProductAmount(productAmount - 1);
   };
+
+  function capitalize(x) {
+    return String(x).charAt(0).toUpperCase() + String(x).slice(1);
+  }
 
   useEffect(() => {
     fetchs(setProductList);
@@ -55,6 +59,8 @@ function Products({ fetchs }) {
   if (!productList) {
     return <p> Loading!</p>;
   }
+  console.log(productList);
+
   return (
     <>
       <div className={styles.productWrapper}>
@@ -64,12 +70,15 @@ function Products({ fetchs }) {
               <div className={styles.productCard} key={item.id}>
                 <img className={styles.productImg} src={item.image} alt={item.title} />
                 <div className={styles.infoBox}>
-                  <div className={styles.textBox}>
+                  <div className={styles.wordBox}>
                     <div className={styles.productName}> {item.title} </div>
-                    <div className={styles.productPrice}> ${item.price} </div>
+                    <div className={styles.productCategory}> {capitalize(item.category)} </div>
                   </div>
-                  <div className={styles.productBtnContainer}>
-                    <Buttons />
+                  <div className={styles.numBox}>
+                    <div className={styles.productPrice}> ${item.price} </div>
+                    <div className={styles.productBtnContainer}>
+                      <Buttons />
+                    </div>
                   </div>
                 </div>
               </div>
