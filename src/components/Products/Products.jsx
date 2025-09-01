@@ -1,22 +1,28 @@
+import { useOutlet, useOutletContext } from 'react-router-dom';
 import styles from './Products.module.css';
 import { useEffect, useState } from 'react';
-// Stick buttons to bottom of card?
 
 const fetcher = (setter) => {
-  fetch('https://fakestoreapi.com/products')
+  fetch('https://fakestoreapi.com/products', { mode: 'cors' })
     .then((response) => response.json())
-    .then((products) => setter(products));
+    .then((products) => setter(products))
+    .catch((error) => console.log(error));
 };
 
-function Buttons() {
+function Buttons({ addCount }) {
   const [productAmount, setProductAmount] = useState(0);
 
   const addClick = () => {
-    setProductAmount(productAmount + 1);
+    const newAmount = productAmount + 1;
+    setProductAmount(newAmount);
+    // testing
+    // REMOVE AFTER TESTING
+    addCount();
   };
   const subtractClick = () => {
     if (productAmount === 0) return;
-    setProductAmount(productAmount - 1);
+    const newAmount = productAmount - 1;
+    setProductAmount(newAmount);
   };
 
   return (
@@ -39,14 +45,7 @@ function Buttons() {
 
 function Products({ fetchs }) {
   const [productList, setProductList] = useState(null);
-  const [productAmount, setProductAmount] = useState(0);
-
-  const addClick = () => {
-    setProductAmount(productAmount + 1);
-  };
-  const subtractClick = () => {
-    setProductAmount(productAmount - 1);
-  };
+  const { addCount } = useOutletContext();
 
   function capitalize(x) {
     return String(x).charAt(0).toUpperCase() + String(x).slice(1);
@@ -59,7 +58,6 @@ function Products({ fetchs }) {
   if (!productList) {
     return <p> Loading!</p>;
   }
-  console.log(productList);
 
   return (
     <>
@@ -77,7 +75,7 @@ function Products({ fetchs }) {
                   <div className={styles.numBox}>
                     <div className={styles.productPrice}> ${item.price} </div>
                     <div className={styles.productBtnContainer}>
-                      <Buttons />
+                      <Buttons addCount={addCount} />
                     </div>
                   </div>
                 </div>

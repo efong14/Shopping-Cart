@@ -1,8 +1,15 @@
+import { useState } from 'react';
 import styles from './Navbar.module.css';
 import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
+// LOADING SCREEN FOR PRODUCT PAGE
+// IMPORTATT!!!
 
 export default function Navbar() {
+  const [counter, setCounter] = useState(0);
+  function addCount() {
+    setCounter(counter + 1);
+  }
   return (
     <>
       <div className={styles.navBar}>
@@ -18,7 +25,7 @@ export default function Navbar() {
           Checkout
         </Link>
       </div>
-      <Outlet />
+      <Outlet context={{ addCount, counter }} />
     </>
   );
 }
