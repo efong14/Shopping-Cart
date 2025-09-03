@@ -3,12 +3,19 @@ import styles from './Navbar.module.css';
 import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 // LOADING SCREEN FOR PRODUCT PAGE
+// figure out how to use cartdata as a prop with context.
 // IMPORTATT!!!
 
 export default function Navbar() {
-  const [counter, setCounter] = useState(0);
-  function addCount() {
-    setCounter(counter + 1);
+  const [cartData, setCartData] = useState(null);
+  function addCartData(itemID, itemName, itemPrice, itemDesc, itemAmount) {
+    if (!cartData) {
+      setCartData([{ itemID, itemName, itemPrice, itemDesc, itemAmount }]);
+      return;
+    }
+    const newItem = cartData;
+    newItem.push({ itemID, itemName, itemPrice, itemDesc, itemAmount });
+    setCartData(newItem);
   }
   return (
     <>
@@ -25,7 +32,7 @@ export default function Navbar() {
           Checkout
         </Link>
       </div>
-      <Outlet context={{ addCount, counter }} />
+      <Outlet context={{ addCartData, cartData }} />
     </>
   );
 }

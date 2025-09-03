@@ -9,20 +9,21 @@ const fetcher = (setter) => {
     .catch((error) => console.log(error));
 };
 
-function Buttons({ addCount }) {
+function Buttons({ addCartData, itemData }) {
   const [productAmount, setProductAmount] = useState(0);
 
   const addClick = () => {
     const newAmount = productAmount + 1;
     setProductAmount(newAmount);
-    // testing
-    // REMOVE AFTER TESTING
-    addCount();
   };
   const subtractClick = () => {
     if (productAmount === 0) return;
     const newAmount = productAmount - 1;
     setProductAmount(newAmount);
+  };
+  const addCartClick = () => {
+    if (productAmount === 0) return;
+    addCartData(itemData.id, itemData.title, itemData.price, productAmount);
   };
 
   return (
@@ -38,14 +39,16 @@ function Buttons({ addCount }) {
           +
         </button>
       </div>
-      <button className={styles.addCart}>ADD TO CART</button>
+      <button className={styles.addCart} onClick={addCartClick}>
+        ADD TO CART
+      </button>
     </>
   );
 }
 
 function Products({ fetchs }) {
   const [productList, setProductList] = useState(null);
-  const { addCount } = useOutletContext();
+  const { addCartData } = useOutletContext();
 
   function capitalize(x) {
     return String(x).charAt(0).toUpperCase() + String(x).slice(1);
@@ -75,7 +78,7 @@ function Products({ fetchs }) {
                   <div className={styles.numBox}>
                     <div className={styles.productPrice}> ${item.price} </div>
                     <div className={styles.productBtnContainer}>
-                      <Buttons addCount={addCount} />
+                      <Buttons addCartData={addCartData} itemData={item} />
                     </div>
                   </div>
                 </div>
