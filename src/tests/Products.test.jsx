@@ -2,7 +2,6 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { Products } from '../components/Products/Products';
 import { beforeEach, describe, expect, it } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import { Buttons } from '@testing-library/user-event/dist/cjs/system/pointer/buttons.js';
 
 const tester = [{ id: 0, image: null, title: 'a', price: '111' }];
 const fetchs = vi.fn((setter) => setTimeout(() => setter(tester), 150));

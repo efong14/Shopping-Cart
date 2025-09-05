@@ -8,13 +8,13 @@ import { Outlet } from 'react-router-dom';
 
 export default function Navbar() {
   const [cartData, setCartData] = useState(null);
-  function addCartData(itemID, itemName, itemPrice, itemDesc, itemAmount) {
+  function addCartData(itemID, itemTitle, itemImage, itemPrice, itemDesc, itemAmount) {
     if (!cartData) {
-      setCartData([{ itemID, itemName, itemPrice, itemDesc, itemAmount }]);
+      setCartData([{ itemID, itemTitle, itemImage, itemPrice, itemDesc, itemAmount }]);
       return;
     }
     const newItem = cartData;
-    newItem.push({ itemID, itemName, itemPrice, itemDesc, itemAmount });
+    newItem.push({ itemID, itemTitle, itemImage, itemPrice, itemDesc, itemAmount });
     setCartData(newItem);
   }
   return (

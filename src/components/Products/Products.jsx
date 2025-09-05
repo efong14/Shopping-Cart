@@ -1,4 +1,4 @@
-import { useOutlet, useOutletContext } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 import styles from './Products.module.css';
 import { useEffect, useState } from 'react';
 
@@ -23,7 +23,7 @@ function Buttons({ addCartData, itemData }) {
   };
   const addCartClick = () => {
     if (productAmount === 0) return;
-    addCartData(itemData.id, itemData.title, itemData.price, productAmount);
+    addCartData(itemData.id, itemData.title, itemData.image, itemData.price, productAmount);
   };
 
   return (
