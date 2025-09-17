@@ -9,20 +9,37 @@ const fetcher = (setter) => {
     .catch((error) => console.log(error));
 };
 
-function Buttons({ addCartData, itemData }) {
+function Buttons({ itemData }) {
+  const { addCartData, modifyCartData, cartData } = useOutletContext();
   const [productAmount, setProductAmount] = useState(0);
 
   const addClick = () => {
     const newAmount = productAmount + 1;
+
     setProductAmount(newAmount);
   };
+
   const subtractClick = () => {
     if (productAmount === 0) return;
+
     const newAmount = productAmount - 1;
+
     setProductAmount(newAmount);
   };
+
   const addCartClick = () => {
     if (productAmount === 0) return;
+
+    if (cartData && cartData.some((item) => item.itemID === itemData.id)) {
+      const indexed = cartData.findIndex((item) => item.itemID === itemData.id);
+      const itemOriginal = cartData[indexed];
+      const itemModified = { ...itemOriginal, itemAmount: itemOriginal.itemAmount + productAmount };
+
+      modifyCartData(indexed, itemModified);
+
+      return;
+    }
+
     addCartData(itemData.id, itemData.title, itemData.image, itemData.price, productAmount);
   };
 
@@ -48,7 +65,6 @@ function Buttons({ addCartData, itemData }) {
 
 function Products({ fetchs }) {
   const [productList, setProductList] = useState(null);
-  const { addCartData } = useOutletContext();
 
   function capitalize(x) {
     return String(x).charAt(0).toUpperCase() + String(x).slice(1);
@@ -59,7 +75,7 @@ function Products({ fetchs }) {
   }, []);
 
   if (!productList) {
-    return <p> Loading!</p>;
+    return <p className={styles.loading}> Loading.....</p>;
   }
 
   return (
@@ -78,7 +94,7 @@ function Products({ fetchs }) {
                   <div className={styles.numBox}>
                     <div className={styles.productPrice}> ${item.price} </div>
                     <div className={styles.productBtnContainer}>
-                      <Buttons addCartData={addCartData} itemData={item} />
+                      <Buttons itemData={item} />
                     </div>
                   </div>
                 </div>

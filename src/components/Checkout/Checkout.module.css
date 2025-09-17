@@ -1,0 +1,42 @@
+@font-face {
+  font-family: gLight;
+  src: url(../../fonts/gLight.ttf);
+}
+
+.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: gLight;
+  color: #fbffe4;
+  font-size: 60px;
+}
+
+.cartList {
+  margin-left: 20px;
+}
+
+.cartItemCard {
+  display: flex;
+  color: black;
+  font-weight: 100;
+  border: black 1px solid;
+  height: 100px;
+  width: 50vw;
+  font-family: sans-serif;
+}
+
+.itemImage,
+.itemTitle,
+.itemPrice,
+.itemAmount {
+  flex: 1;
+  border: 1px solid white;
+  text-align: center;
+}
+
+.itemImage {
+  height: 100%;
+  object-fit: contain;
+}

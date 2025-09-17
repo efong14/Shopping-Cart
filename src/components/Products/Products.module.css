@@ -9,6 +9,16 @@
   box-sizing: border-box;
 }
 
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: gLight;
+  color: #fbffe4;
+  font-size: 60px;
+}
+
 .productWrapper {
   margin: 50px;
 }

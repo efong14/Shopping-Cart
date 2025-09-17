@@ -4,6 +4,8 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
+let test = null;
+
 vi.mock('react-router-dom', () => ({
   ...vi.importActual('react-router-dom'),
   useOutletContext: () => ({
@@ -12,7 +14,6 @@ vi.mock('react-router-dom', () => ({
   }),
 }));
 
-let test = null;
 afterEach(() => {
   test = [
     {
