@@ -4,6 +4,8 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
+// Test to see if providing new cartData will change whats on screen.
+
 let test = null;
 
 vi.mock('react-router-dom', () => ({

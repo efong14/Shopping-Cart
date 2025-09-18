@@ -2,6 +2,8 @@ import { useOutletContext } from 'react-router-dom';
 import styles from './Products.module.css';
 import { useEffect, useState } from 'react';
 
+// FIGURE OUT TESTING FOR ADDCART???
+
 const fetcher = (setter) => {
   fetch('https://fakestoreapi.com/products', { mode: 'cors' })
     .then((response) => response.json())
@@ -49,7 +51,7 @@ function Buttons({ itemData }) {
         <button className={styles.subtract} onClick={subtractClick}>
           -
         </button>
-        <div className={styles.productNum} role="amount">
+        <div className={styles.productNum} role="itemAmount">
           {productAmount}
         </div>
         <button className={styles.add} onClick={addClick}>
@@ -84,15 +86,26 @@ function Products({ fetchs }) {
         <ul className={styles.productList}>
           {productList.map((item) => {
             return (
-              <div className={styles.productCard} key={item.id}>
-                <img className={styles.productImg} src={item.image} alt={item.title} />
+              <div className={styles.productCard} key={item.id} role="itemID">
+                <img
+                  className={styles.productImg}
+                  src={item.image}
+                  alt={item.title}
+                  role="itemImage"
+                />
                 <div className={styles.infoBox}>
                   <div className={styles.wordBox}>
-                    <div className={styles.productName}> {item.title} </div>
-                    <div className={styles.productCategory}> {capitalize(item.category)} </div>
+                    <div className={styles.productName} role="itemTitle">
+                      {item.title}
+                    </div>
+                    <div className={styles.productCategory} role="itemCategory">
+                      {capitalize(item.category)}
+                    </div>
                   </div>
                   <div className={styles.numBox}>
-                    <div className={styles.productPrice}> ${item.price} </div>
+                    <div className={styles.productPrice} role="itemPrice">
+                      ${item.price}
+                    </div>
                     <div className={styles.productBtnContainer}>
                       <Buttons itemData={item} />
                     </div>

@@ -15,21 +15,25 @@ export default function Checkout() {
       <div className={styles.cartList}>
         {cartData.map((item) => {
           return (
-            <div className={styles.cartItemCard} key={item.itemID}>
+            <div className={styles.cartItemCard} key={item.itemID} role="itemID">
               <div className={styles.itemImage}>
-                <img className={styles.itemImage} src={item.itemImage} alt="" />
+                <img className={styles.itemImage} src={item.itemImage} alt="" role="itemImage" />
               </div>
-              <div className={styles.itemTitle}>{item.itemTitle}</div>
-              <div className={styles.itemPrice}>
+              <div className={styles.itemTitle} role="itemTitle">
+                {item.itemTitle}
+              </div>
+              <div className={styles.itemPrice} role="itemPrice">
                 <div>Each</div>
                 <div>{item.itemPrice}</div>
               </div>
-              <div className={styles.itemAmount}>Quantity: {item.itemAmount}</div>
+              <div className={styles.itemAmount} role="itemAmount">
+                Quantity: {item.itemAmount}
+              </div>
             </div>
           );
         })}
       </div>
-      <div className={styles.totalPrice}></div>
+      <div className={styles.totalPrice} role="totalPrice"></div>
     </>
   );
 }
