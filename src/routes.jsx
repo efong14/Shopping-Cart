@@ -1,4 +1,4 @@
-import Navbar from './components/Navbar/Navbar';
+import { Navbar } from './components/Navbar/Navbar';
 import Homepage from './components/Homepage/Homepage';
 import Errorpage from './components/Errorpage/Errorpage';
 import { Products, fetcher } from './components/Products/Products';

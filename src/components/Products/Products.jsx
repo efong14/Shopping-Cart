@@ -12,7 +12,7 @@ const fetcher = (setter) => {
 };
 
 function Buttons({ itemData }) {
-  const { addCartData, modifyCartData, cartData } = useOutletContext();
+  const { addCartData, modifyCartData, cartData, setCartData } = useOutletContext();
   const [productAmount, setProductAmount] = useState(0);
 
   const addClick = () => {
@@ -37,12 +37,20 @@ function Buttons({ itemData }) {
       const itemOriginal = cartData[indexed];
       const itemModified = { ...itemOriginal, itemAmount: itemOriginal.itemAmount + productAmount };
 
-      modifyCartData(indexed, itemModified);
+      modifyCartData(indexed, itemModified, cartData, setCartData);
 
       return;
     }
 
-    addCartData(itemData.id, itemData.title, itemData.image, itemData.price, productAmount);
+    addCartData(
+      itemData.id,
+      itemData.title,
+      itemData.image,
+      itemData.price,
+      productAmount,
+      cartData,
+      setCartData
+    );
   };
 
   return (

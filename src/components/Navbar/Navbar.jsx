@@ -3,27 +3,27 @@ import styles from './Navbar.module.css';
 import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 
-export default function Navbar() {
+function addCartData(itemID, itemTitle, itemImage, itemPrice, itemAmount, cartData, setCartData) {
+  if (!cartData) {
+    setCartData([{ itemID, itemTitle, itemImage, itemPrice, itemAmount }]);
+    return;
+  }
+
+  const newItem = cartData;
+
+  newItem.push({ itemID, itemTitle, itemImage, itemPrice, itemAmount });
+
+  setCartData(newItem);
+}
+
+function modifyCartData(index, modified, cartData, setCartData) {
+  const cartModified = cartData.toSpliced(index, 1, modified);
+
+  setCartData(cartModified);
+}
+
+function Navbar() {
   const [cartData, setCartData] = useState(null);
-
-  function addCartData(itemID, itemTitle, itemImage, itemPrice, itemAmount) {
-    if (!cartData) {
-      setCartData([{ itemID, itemTitle, itemImage, itemPrice, itemAmount }]);
-      return;
-    }
-
-    const newItem = cartData;
-
-    newItem.push({ itemID, itemTitle, itemImage, itemPrice, itemAmount });
-
-    setCartData(newItem);
-  }
-
-  function modifyCartData(index, modified) {
-    const cartModified = cartData.toSpliced(index, 1, modified);
-
-    setCartData(cartModified);
-  }
 
   return (
     <>
@@ -40,7 +40,8 @@ export default function Navbar() {
           Checkout
         </Link>
       </div>
-      <Outlet context={{ addCartData, modifyCartData, cartData }} />
+      <Outlet context={{ addCartData, modifyCartData, cartData, setCartData }} />
     </>
   );
 }
+export { Navbar, addCartData, modifyCartData };

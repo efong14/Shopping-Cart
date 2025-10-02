@@ -1,10 +1,11 @@
 import { render, screen } from '@testing-library/react';
-import App from '../components/Homepage/Homepage';
+import Homepage from '../components/Homepage/Homepage';
 import { describe, expect, it } from 'vitest';
+// add test to check snapshot?
 
-describe('App', () => {
+describe('Homepage', () => {
   it('renders headline', () => {
-    render(<App />);
+    render(<Homepage />);
     expect(screen.getAllByRole('heading')[0].textContent).toMatch(/THE STORE/i);
   });
 });
