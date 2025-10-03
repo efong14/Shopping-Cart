@@ -6,6 +6,7 @@ import { describe, expect, it } from 'vitest';
 describe('Homepage', () => {
   it('renders headline', () => {
     render(<Homepage />);
+
     expect(screen.getAllByRole('heading')[0].textContent).toMatch(/THE STORE/i);
   });
 });
