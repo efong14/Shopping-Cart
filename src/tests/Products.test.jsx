@@ -3,6 +3,8 @@ import { Products } from '../components/Products/Products';
 import { beforeEach, describe, expect, it } from 'vitest';
 import userEvent from '@testing-library/user-event';
 
+// test and style itemcounter
+
 let valueHolder = null;
 
 const tester = [
@@ -81,7 +83,7 @@ describe('Buttons on page work as intended', () => {
     expect(valueHolder).toEqual(null);
   });
 
-  it('Pressing add to cart with productAmount at 1 will call addCartData with correct the parameters', async () => {
+  it('Pressing add to cart with productAmount at 1 will call addCartData with correct the parameters and set amount to 0', async () => {
     const user = userEvent.setup();
     const add = screen.getAllByRole('button', { name: '+' })[1];
     const addToCart = screen.getAllByRole('button', { name: 'ADD TO CART' })[1];
@@ -90,6 +92,7 @@ describe('Buttons on page work as intended', () => {
     await user.click(addToCart);
 
     expect(valueHolder).toEqual([1, 'b', null, '222', 1]);
+    expect(screen.getAllByRole('itemAmount')[1].textContent).toEqual('0');
   });
 
   it('Pressing add to cart with productAmount at 1 and with the same product already in cart will call modifyCartData with correct the parameters', async () => {

@@ -2,8 +2,6 @@ import { useOutletContext } from 'react-router-dom';
 import styles from './Products.module.css';
 import { useEffect, useState } from 'react';
 
-// FIGURE OUT TESTING FOR ADDCART???
-
 const fetcher = (setter) => {
   fetch('https://fakestoreapi.com/products', { mode: 'cors' })
     .then((response) => response.json())
@@ -12,7 +10,8 @@ const fetcher = (setter) => {
 };
 
 function Buttons({ itemData }) {
-  const { addCartData, modifyCartData, cartData, setCartData } = useOutletContext();
+  const { addCartData, modifyCartData, cartData, setCartData, itemCounter, setItemCounter } =
+    useOutletContext();
   const [productAmount, setProductAmount] = useState(0);
 
   const addClick = () => {
@@ -38,6 +37,7 @@ function Buttons({ itemData }) {
       const itemModified = { ...itemOriginal, itemAmount: itemOriginal.itemAmount + productAmount };
 
       modifyCartData(indexed, itemModified, cartData, setCartData);
+      setProductAmount(0);
 
       return;
     }
@@ -49,8 +49,11 @@ function Buttons({ itemData }) {
       itemData.price,
       productAmount,
       cartData,
-      setCartData
+      setCartData,
+      itemCounter,
+      setItemCounter
     );
+    setProductAmount(0);
   };
 
   return (
