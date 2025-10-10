@@ -2,13 +2,19 @@ import { describe, expect, it } from 'vitest';
 import { addCartData, modifyCartData } from '../components/Navbar/Navbar';
 
 describe('addCartData function works as intended', () => {
-  it('Creates a new array with an object within cartData if it is empty', () => {
+  it('Creates a new array with an object within cartData if it is empty and sets itemCounter to 1', () => {
     let cartData = null;
+    let itemCounter = 0;
 
     function setCartData(items) {
       cartData = items;
     }
-    addCartData(0, 'a', null, '111', 1, cartData, setCartData);
+
+    function setItemCounter() {
+      itemCounter = 1;
+    }
+
+    addCartData(0, 'a', null, '111', 1, cartData, setCartData, itemCounter, setItemCounter);
 
     expect(cartData[0]).toEqual({
       itemID: 0,
@@ -21,12 +27,17 @@ describe('addCartData function works as intended', () => {
 
   it('Adds new object to cartData if cartData is not empty', () => {
     let cartData = [1];
+    let itemCounter = 1;
 
     function setCartData() {
       null;
     }
 
-    addCartData(0, 'a', null, '111', 1, cartData, setCartData);
+    function setItemCounter() {
+      itemCounter += 1;
+    }
+
+    addCartData(0, 'a', null, '111', 1, cartData, setCartData, itemCounter, setItemCounter);
 
     expect(cartData[1]).toEqual({
       itemID: 0,

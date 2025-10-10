@@ -1,10 +1,9 @@
 import Checkout from '../components/Checkout/Checkout';
 import { render, screen, waitFor } from '@testing-library/react';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
-import userEvent from '@testing-library/user-event';
+// finish the checkout calculation breakdown of items
 
-// Cant use memory router as Products page NEEDS fetch to be mocked, with memory router fetch actually fetches. Mock cartData and change that per test to check if it outputs correctly.
 let tester = null;
 
 vi.mock('react-router-dom', () => ({

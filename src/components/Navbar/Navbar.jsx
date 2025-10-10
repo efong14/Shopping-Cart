@@ -2,6 +2,8 @@ import { useState } from 'react';
 import styles from './Navbar.module.css';
 import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
+import Icon from '@mdi/react';
+import { mdiShoppingOutline } from '@mdi/js';
 
 function addCartData(
   itemID,
@@ -50,10 +52,16 @@ function Navbar() {
             Products
           </Link>
         </div>
-        <Link to="/nav/checkout" className={styles.checkout}>
-          Checkout
-        </Link>
-        {itemCounter > 0 && <div>{itemCounter}</div>}
+        <div className={styles.rightSide}>
+          <Link to="/nav/checkout" className={styles.checkout}>
+            <Icon path={mdiShoppingOutline} size={2} />
+          </Link>
+          {itemCounter > 0 && (
+            <div className={styles.itemCounter} role="itemCounter">
+              {itemCounter}
+            </div>
+          )}
+        </div>
       </div>
       <Outlet
         context={{

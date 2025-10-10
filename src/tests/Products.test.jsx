@@ -3,8 +3,6 @@ import { Products } from '../components/Products/Products';
 import { beforeEach, describe, expect, it } from 'vitest';
 import userEvent from '@testing-library/user-event';
 
-// test and style itemcounter
-
 let valueHolder = null;
 
 const tester = [
