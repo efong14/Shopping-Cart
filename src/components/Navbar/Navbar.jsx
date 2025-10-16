@@ -37,6 +37,12 @@ function modifyCartData(index, modified, cartData, setCartData) {
   setCartData(cartModified);
 }
 
+function removeFromCartData(index, cartData, setCartData) {
+  const cartModified = cartData.toSpliced(index, 1);
+
+  setCartData(cartModified);
+}
+
 function Navbar() {
   const [cartData, setCartData] = useState(null);
   const [itemCounter, setItemCounter] = useState(0);
@@ -67,6 +73,7 @@ function Navbar() {
         context={{
           addCartData,
           modifyCartData,
+          removeFromCartData,
           cartData,
           setCartData,
           itemCounter,
@@ -76,4 +83,4 @@ function Navbar() {
     </>
   );
 }
-export { Navbar, addCartData, modifyCartData };
+export { Navbar, addCartData, modifyCartData, removeFromCartData };

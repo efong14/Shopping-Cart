@@ -23,7 +23,7 @@
   color: black;
   font-weight: 100;
   border: black 1px solid;
-  height: 100px;
+  height: 200px;
   width: 50vw;
   font-family: sans-serif;
 }
@@ -32,12 +32,26 @@
 .itemTitle,
 .itemPrice,
 .itemAmount {
-  flex: 1;
   border: 1px solid white;
-  text-align: center;
+  text-align: left;
 }
 
 .itemImage {
-  height: 100%;
+  height: 200px;
+  width: 200px;
   object-fit: contain;
+}
+
+.itemImageContainer {
+  height: 100%;
+}
+
+.itemInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.itemInfo div {
+  font-size: 25px;
+  color: white;
 }
