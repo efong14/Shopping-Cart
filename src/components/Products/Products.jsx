@@ -10,7 +10,7 @@ const fetcher = (setter) => {
 };
 
 function Buttons({ itemData }) {
-  const { addCartData, modifyCartData, cartData, setCartData, itemCounter, setItemCounter } =
+  const { cartData, setCartData, addCartData, modifyCartData, itemCounter, setItemCounter } =
     useOutletContext();
   const [productAmount, setProductAmount] = useState(0);
 

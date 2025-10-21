@@ -2,26 +2,46 @@ import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import styles from './Checkout.module.css';
 
-function CheckoutBtn({ totalPrice, setTotalPrice, itemAmount, itemPrice }) {
-  const [productAmount, setProductAmount] = useState(itemAmount);
-  let price = totalPrice;
+// Update navbar icon when item is removed from cart and make checkout page return to cart is empty if so
+function CheckoutBtn({
+  totalPrice,
+  setTotalPrice,
+  item,
+  cartData,
+  setCartData,
+  modifyCartData,
+  removeFromCartData,
+}) {
+  const [productAmount, setProductAmount] = useState(item.itemAmount);
+  const indexed = cartData.findIndex((cartItem) => cartItem.itemID === item.itemID);
+  const itemOriginal = cartData[indexed];
+
+  let price = Number(totalPrice);
 
   const addClick = () => {
+    const itemAdd = { ...itemOriginal, itemAmount: itemOriginal.itemAmount + 1 };
     const newAmount = productAmount + 1;
 
+    modifyCartData(indexed, itemAdd, cartData, setCartData);
     setProductAmount(newAmount);
-    price += itemPrice;
-    setTotalPrice(price);
+    price += item.itemPrice;
+    setTotalPrice(price.toFixed(2));
   };
 
   const subtractClick = () => {
-    if (productAmount === 0) return;
+    price -= item.itemPrice;
+    setTotalPrice(price.toFixed(2));
 
+    if (productAmount === 1) {
+      removeFromCartData(indexed, cartData, setCartData);
+      return;
+    }
+
+    const itemSubtract = { ...itemOriginal, itemAmount: itemOriginal.itemAmount - 1 };
     const newAmount = productAmount - 1;
 
+    modifyCartData(indexed, itemSubtract, cartData, setCartData);
     setProductAmount(newAmount);
-    price -= itemPrice;
-    setTotalPrice(price);
   };
 
   return (
@@ -42,7 +62,7 @@ function CheckoutBtn({ totalPrice, setTotalPrice, itemAmount, itemPrice }) {
 }
 
 function Checkout() {
-  const { cartData } = useOutletContext();
+  const { cartData, setCartData, modifyCartData, removeFromCartData } = useOutletContext();
   let totalStorage = 0;
 
   if (!cartData) {
@@ -53,7 +73,7 @@ function Checkout() {
     totalStorage += item.itemPrice * item.itemAmount;
   });
 
-  const [totalPrice, setTotalPrice] = useState(totalStorage);
+  const [totalPrice, setTotalPrice] = useState(totalStorage.toFixed(2));
 
   return (
     <>
@@ -76,8 +96,11 @@ function Checkout() {
                   <CheckoutBtn
                     totalPrice={totalPrice}
                     setTotalPrice={setTotalPrice}
-                    itemAmount={item.itemAmount}
-                    itemPrice={item.itemPrice}
+                    item={item}
+                    cartData={cartData}
+                    setCartData={setCartData}
+                    modifyCartData={modifyCartData}
+                    removeFromCartData={removeFromCartData}
                   />
                 </div>
               </div>

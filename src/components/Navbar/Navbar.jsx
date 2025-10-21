@@ -71,10 +71,10 @@ function Navbar() {
       </div>
       <Outlet
         context={{
+          cartData,
           addCartData,
           modifyCartData,
           removeFromCartData,
-          cartData,
           setCartData,
           itemCounter,
           setItemCounter,
