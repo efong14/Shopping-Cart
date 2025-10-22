@@ -37,10 +37,12 @@ function modifyCartData(index, modified, cartData, setCartData) {
   setCartData(cartModified);
 }
 
-function removeFromCartData(index, cartData, setCartData) {
+function removeFromCartData(index, cartData, setCartData, itemCounter, setItemCounter) {
   const cartModified = cartData.toSpliced(index, 1);
+  const newCounter = itemCounter - 1;
 
   setCartData(cartModified);
+  setItemCounter(newCounter);
 }
 
 function Navbar() {

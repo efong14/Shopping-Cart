@@ -8,8 +8,8 @@ function setCartData(items) {
   cartData = items;
 }
 
-function setItemCounter() {
-  itemCounter += 1;
+function setItemCounter(num) {
+  itemCounter = num;
 }
 
 describe('addCartData function works as intended', () => {
@@ -67,9 +67,11 @@ describe('Functions modify existing cartData', () => {
       itemAmount: 2,
     });
   });
+
   it('removeFromCartData removes item from cartData', () => {
     cartData = [1, 2];
-    removeFromCartData(0, cartData, setCartData);
+    removeFromCartData(0, cartData, setCartData, itemCounter, setItemCounter);
     expect(cartData[0]).toEqual(2);
+    expect(itemCounter).toEqual(1);
   });
 });

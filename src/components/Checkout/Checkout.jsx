@@ -11,6 +11,8 @@ function CheckoutBtn({
   setCartData,
   modifyCartData,
   removeFromCartData,
+  itemCounter,
+  setItemCounter,
 }) {
   const [productAmount, setProductAmount] = useState(item.itemAmount);
   const indexed = cartData.findIndex((cartItem) => cartItem.itemID === item.itemID);
@@ -33,7 +35,7 @@ function CheckoutBtn({
     setTotalPrice(price.toFixed(2));
 
     if (productAmount === 1) {
-      removeFromCartData(indexed, cartData, setCartData);
+      removeFromCartData(indexed, cartData, setCartData, itemCounter, setItemCounter);
       return;
     }
 
@@ -62,18 +64,24 @@ function CheckoutBtn({
 }
 
 function Checkout() {
-  const { cartData, setCartData, modifyCartData, removeFromCartData } = useOutletContext();
-  let totalStorage = 0;
+  const { cartData, setCartData, modifyCartData, removeFromCartData, itemCounter, setItemCounter } =
+    useOutletContext();
 
   if (!cartData) {
     return <p className={styles.empty}>Cart is empty!</p>;
   }
+
+  let totalStorage = 0;
 
   cartData.map((item) => {
     totalStorage += item.itemPrice * item.itemAmount;
   });
 
   const [totalPrice, setTotalPrice] = useState(totalStorage.toFixed(2));
+
+  if (totalPrice === '0.00') {
+    return <p className={styles.empty}>Cart is empty!</p>;
+  }
 
   return (
     <>
@@ -101,6 +109,8 @@ function Checkout() {
                     setCartData={setCartData}
                     modifyCartData={modifyCartData}
                     removeFromCartData={removeFromCartData}
+                    itemCounter={itemCounter}
+                    setItemCounter={setItemCounter}
                   />
                 </div>
               </div>
@@ -109,7 +119,7 @@ function Checkout() {
         })}
       </div>
       <div className={styles.totalPrice} role="totalPrice">
-        {totalPrice}
+        ${totalPrice}
       </div>
     </>
   );
