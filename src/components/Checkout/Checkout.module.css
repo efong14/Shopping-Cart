@@ -3,6 +3,8 @@
   src: url(../../fonts/gLight.ttf);
 }
 
+/* fix media query css for all pages for phones. Place total price breakdown at right of items in cart to use space better */
+
 .empty {
   display: flex;
   justify-content: center;
@@ -13,27 +15,43 @@
   font-size: 60px;
 }
 
-.cartList {
+.cartWrapper {
+  display: flex;
+  margin: 20px;
   margin-top: 75px;
-  margin-left: 20px;
+  font-family: sans-serif;
+  font-size: 25px;
+  color: #3d8d7a;
+}
+
+.cartList {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .cartItemCard {
   display: flex;
-  color: black;
-  font-weight: 100;
-  border: black 1px solid;
-  height: 200px;
-  width: 50vw;
-  font-family: sans-serif;
+  background-color: white;
+  height: 240px;
+  width: 60vw;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 5px 5px 5px #333;
+  border-radius: 15px;
 }
 
 .itemImage,
 .itemTitle,
 .itemPrice,
 .itemAmount {
-  border: 1px solid white;
   text-align: left;
+}
+
+.itemImageContainer {
+  display: flex;
+  justify-content: center;
+  height: 100%;
 }
 
 .itemImage {
@@ -42,16 +60,102 @@
   object-fit: contain;
 }
 
-.itemImageContainer {
-  height: 100%;
-}
-
 .itemInfo {
   display: flex;
   flex-direction: column;
 }
 
-.itemInfo div {
-  font-size: 25px;
-  color: white;
+.itemTitle {
+  height: 100px;
+  border: 1px red solid;
+}
+
+.numberContainer {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.itemPrice {
+  width: 100px;
+  margin-right: 20px;
+}
+
+.amountContainer {
+  height: 35px;
+  width: 120px;
+  display: flex;
+  margin-right: 20px;
+  border: 2px solid #3d8d7a;
+  border-radius: 6px;
+}
+
+.productNum,
+.add,
+.subtract {
+  width: 60px;
+  height: 100%;
+  color: #3d8d7a;
+}
+
+.productNum {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: 1px solid #3d8d7a;
+  border-right: 1px solid #3d8d7a;
+}
+
+.subtract {
+  border: none;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.add {
+  border: none;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.priceWrapper {
+  padding: 10px;
+  margin: 10px;
+  width: 35vw;
+  background-color: white;
+  box-shadow: 5px 5px 5px #333;
+  border-radius: 15px;
+}
+
+.priceWrapper div {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 1000px) {
+  .productWrapper {
+    margin: 10px;
+    margin-top: 100px;
+  }
+  .cartList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cartItemCard {
+    width: 375px;
+  }
+}
+
+@media (max-width: 600px) {
+  .productWrapper {
+    margin-top: 100px;
+    width: 95vw;
+  }
+  .cartList {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .cartItemCard {
+    flex-direction: column;
+    width: 350px;
+    height: 400px;
+  }
 }

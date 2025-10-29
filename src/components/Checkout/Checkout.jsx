@@ -85,41 +85,61 @@ function Checkout() {
 
   return (
     <>
-      <div>Checkout</div>
-      <div className={styles.cartList}>
-        {cartData.map((item) => {
-          return (
-            <div className={styles.cartItemCard} key={item.itemID} role="itemID">
-              <div className={styles.itemImageContainer}>
-                <img className={styles.itemImage} src={item.itemImage} alt="" role="itemImage" />
+      <div className={styles.cartWrapper}>
+        <div className={styles.cartList}>
+          {cartData.map((item) => {
+            return (
+              <div className={styles.cartItemCard} key={item.itemID} role="itemID">
+                <div className={styles.itemImageContainer}>
+                  <img className={styles.itemImage} src={item.itemImage} alt="" role="itemImage" />
+                </div>
+                <div className={styles.itemInfo}>
+                  <div className={styles.itemTitle} role="itemTitle">
+                    {item.itemTitle}
+                  </div>
+                  <div className={styles.numberContainer}>
+                    <div className={styles.itemPrice} role="itemPrice">
+                      ${Number(item.itemPrice).toFixed(2)}
+                    </div>
+                    <div className={styles.btnContainer} role="btnContainer">
+                      <CheckoutBtn
+                        totalPrice={totalPrice}
+                        setTotalPrice={setTotalPrice}
+                        item={item}
+                        cartData={cartData}
+                        setCartData={setCartData}
+                        modifyCartData={modifyCartData}
+                        removeFromCartData={removeFromCartData}
+                        itemCounter={itemCounter}
+                        setItemCounter={setItemCounter}
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className={styles.itemInfo}>
-                <div className={styles.itemTitle} role="itemTitle">
-                  {item.itemTitle}
-                </div>
-                <div className={styles.itemPrice} role="itemPrice">
-                  <div>${item.itemPrice}</div>
-                </div>
-                <div className={styles.btnContainer} role="btnContainer">
-                  <CheckoutBtn
-                    totalPrice={totalPrice}
-                    setTotalPrice={setTotalPrice}
-                    item={item}
-                    cartData={cartData}
-                    setCartData={setCartData}
-                    modifyCartData={modifyCartData}
-                    removeFromCartData={removeFromCartData}
-                    itemCounter={itemCounter}
-                    setItemCounter={setItemCounter}
-                  />
-                </div>
-              </div>
+            );
+          })}
+        </div>
+        <div className={styles.priceWrapper}>
+          <div className={styles.itemsTotalWrapper}>
+            <div className={styles.itemsTotalHeader}>Item Subtotal:</div>
+            <div className={styles.itemsTotal}>${totalPrice}</div>
+          </div>
+          <div className={styles.taxTotalWrapper}>
+            <div className={styles.taxTotalHeader}>Taxes:</div>
+            <div className={styles.taxTotal}>$0.00</div>
+          </div>
+          <div className={styles.shippingTotalWrapper}>
+            <div className={styles.shippingTotalHeader}>Shipping:</div>
+            <div className={styles.shippingTotal}>$0.00</div>
+          </div>
+          <div className={styles.finalTotalWrapper}>
+            <div className={styles.finalTotalHeader}>Total:</div>
+            <div className={styles.totalPrice} role="totalPrice">
+              ${totalPrice}
             </div>
-          );
-        })}
-      </div>
-      <div className={styles.totalPrice} role="totalPrice">
-        ${totalPrice}
+          </div>
+        </div>
       </div>
     </>
   );

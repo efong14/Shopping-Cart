@@ -115,7 +115,7 @@ function Products({ fetchs }) {
                   </div>
                   <div className={styles.numBox}>
                     <div className={styles.productPrice} role="itemPrice">
-                      ${item.price}
+                      ${Number(item.price).toFixed(2)}
                     </div>
                     <div className={styles.productBtnContainer}>
                       <Buttons itemData={item} />
