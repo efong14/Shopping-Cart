@@ -20,6 +20,7 @@
 
 .productWrapper {
   margin: 50px;
+  margin-top: 100px;
 }
 
 .productList {
@@ -151,15 +152,15 @@
   }
   .productList {
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
   .productCard {
-    width: 375px;
+    width: 300px;
   }
 }
 
 @media (max-width: 600px) {
   .productWrapper {
-    margin-top: 100px;
     width: 95vw;
   }
   .productList {
@@ -167,5 +168,11 @@
   }
   .productCard {
     width: 350px;
+  }
+}
+
+@media (max-width: 400px) {
+  .productCard {
+    width: 300px;
   }
 }

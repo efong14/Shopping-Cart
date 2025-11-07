@@ -3,7 +3,7 @@
   src: url(../../fonts/gLight.ttf);
 }
 
-/* fix media query css for all pages for phones. Place total price breakdown at right of items in cart to use space better */
+/*  Place total price breakdown at right of items in cart to use space better */
 
 .empty {
   display: flex;
@@ -52,6 +52,7 @@
   display: flex;
   justify-content: center;
   height: 100%;
+  margin-right: 20px;
 }
 
 .itemImage {
@@ -63,22 +64,19 @@
 .itemInfo {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 }
 
 .itemTitle {
-  height: 100px;
-  border: 1px red solid;
+  padding-top: 20px;
+  padding-right: 20px;
 }
 
 .numberContainer {
   margin-top: 20px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-}
-
-.itemPrice {
-  width: 100px;
-  margin-right: 20px;
 }
 
 .amountContainer {
@@ -93,6 +91,7 @@
 .productNum,
 .add,
 .subtract {
+  font-size: 25px;
   width: 60px;
   height: 100%;
   color: #3d8d7a;
@@ -119,43 +118,110 @@
 }
 
 .priceWrapper {
-  padding: 10px;
+  padding: 20px;
   margin: 10px;
-  width: 35vw;
+  margin-right: 30px;
+  height: 400px;
+  width: 30vw;
   background-color: white;
   box-shadow: 5px 5px 5px #333;
   border-radius: 15px;
+  position: fixed;
+  top: 20;
+  right: 0;
 }
 
-.priceWrapper div {
+.summary {
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.itemsTotalWrapper,
+.taxTotalWrapper,
+.shippingTotalWrapper,
+.finalTotalWrapper {
+  margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
 }
 
+.itemsTotalWrapper {
+  margin-top: 20px;
+}
+
+.finalTotalWrapper {
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: #3d8d7a 1px solid;
+  border-bottom: #3d8d7a 1px solid;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.checkoutBtn {
+  height: 50px;
+  width: 200px;
+  background-color: #3d8d7a;
+  color: white;
+  border: 2px solid #3d8d7a;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
 @media (max-width: 1000px) {
-  .productWrapper {
-    margin: 10px;
-    margin-top: 100px;
+  .cartWrapper {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
-  .cartList {
-    grid-template-columns: repeat(2, 1fr);
+
+  .priceWrapper {
+    position: static;
+    width: 95%;
+    margin: 15px;
   }
+
   .cartItemCard {
-    width: 375px;
+    width: 95%;
   }
 }
 
 @media (max-width: 600px) {
-  .productWrapper {
-    margin-top: 100px;
-    width: 95vw;
+  .cartWrapper {
+    font-size: 18px;
   }
-  .cartList {
-    grid-template-columns: repeat(1, 1fr);
+
+  .itemImage {
+    width: 80px;
   }
-  .cartItemCard {
-    flex-direction: column;
-    width: 350px;
-    height: 400px;
+
+  .itemPrice {
+    margin-right: 0px;
+    width: 80%;
+  }
+
+  .add,
+  .subtract,
+  .productNum {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 400px) {
+  .cartWrapper {
+    font-size: 15px;
+  }
+
+  .amountContainer {
+    width: 80px;
+    height: 30px;
+  }
+  .add,
+  .subtract,
+  .productNum {
+    font-size: 15px;
   }
 }

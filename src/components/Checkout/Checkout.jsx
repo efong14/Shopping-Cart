@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
+import { ScrollRestoration } from 'react-router-dom';
 import styles from './Checkout.module.css';
 
 // Update navbar icon when item is removed from cart and make checkout page return to cart is empty if so
@@ -85,6 +86,7 @@ function Checkout() {
 
   return (
     <>
+      <ScrollRestoration />
       <div className={styles.cartWrapper}>
         <div className={styles.cartList}>
           {cartData.map((item) => {
@@ -121,6 +123,7 @@ function Checkout() {
           })}
         </div>
         <div className={styles.priceWrapper}>
+          <div className={styles.summary}>Summary</div>
           <div className={styles.itemsTotalWrapper}>
             <div className={styles.itemsTotalHeader}>Item Subtotal:</div>
             <div className={styles.itemsTotal}>${totalPrice}</div>
@@ -138,6 +141,9 @@ function Checkout() {
             <div className={styles.totalPrice} role="totalPrice">
               ${totalPrice}
             </div>
+          </div>
+          <div className={styles.btnContainer}>
+            <button className={styles.checkoutBtn}>Checkout</button>
           </div>
         </div>
       </div>

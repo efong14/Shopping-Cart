@@ -1,6 +1,7 @@
 import { useOutletContext } from 'react-router-dom';
-import styles from './Products.module.css';
 import { useEffect, useState } from 'react';
+import { ScrollRestoration } from 'react-router-dom';
+import styles from './Products.module.css';
 
 const fetcher = (setter) => {
   fetch('https://fakestoreapi.com/products', { mode: 'cors' })
@@ -93,6 +94,7 @@ function Products({ fetchs }) {
 
   return (
     <>
+      <ScrollRestoration />
       <div className={styles.productWrapper}>
         <ul className={styles.productList}>
           {productList.map((item) => {
