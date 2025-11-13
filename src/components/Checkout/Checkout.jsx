@@ -3,7 +3,6 @@ import { useOutletContext } from 'react-router-dom';
 import { ScrollRestoration } from 'react-router-dom';
 import styles from './Checkout.module.css';
 
-// Update navbar icon when item is removed from cart and make checkout page return to cart is empty if so
 function CheckoutBtn({
   totalPrice,
   setTotalPrice,
